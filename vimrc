@@ -22,6 +22,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'briancollins/vim-jst'
 
+Plug 'tpope/vim-dispatch'
+
 " Ruby/Rails
 Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
@@ -449,7 +451,7 @@ nnoremap <leader>zr :VtrFocusRunner<CR>
 " -----------------
 nnoremap <Leader>l :TestNearest<CR>:redraw!<CR>
 nnoremap <Leader>a :TestFile<CR>:redraw!<CR>
-let test#strategy = 'vtr'
+let test#strategy = 'dispatch'
 let test#ruby#rspec#options = {
       \ 'nearest': '--format documentation',
       \ 'file':    '--format documentation',
