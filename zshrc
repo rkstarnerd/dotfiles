@@ -564,10 +564,12 @@ alias amend-new="git commit --amend"
 alias ga="git add"
 alias gai="git add --interactive"
 alias gcp="git rev-parse HEAD | xargs echo -n | pbcopy"
-gc(){
+git-checkout-base(){
+  local cmd=$1
+  shift
   if [[ $# == 0 ]]; then
-    local selection=$(git branch --all --verbose --verbose --color=always |\
-      rg -v 'remotes/origin/(HEAD|master)' |\
+    local selection=$($cmd |\
+      grep -v -e 'remotes/origin/(HEAD|master)' |\
       sed -E -e 's/^\*?[ \t]*//' |\
       sort -u |\
       fzf --reverse --ansi --tac)
@@ -580,6 +582,14 @@ gc(){
     git checkout "$@"
   fi
 }
+gc(){
+  git-checkout-base ""
+}
+# gcr = "git checkout remote"
+gcr(){
+  git-checkout-base -r
+}
+
 alias gcm="git commit -m"
 
 # Checkout branches starting with my initials
