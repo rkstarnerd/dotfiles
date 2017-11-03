@@ -600,9 +600,11 @@ function gcl {
   cd "$directory"
 }
 
+alias __git-branch_main=_git_branch
+
 # Complete `g` like `git`, etc
 compdef g=git
-compdef _git gc=git-checkout
+compdef _git gc=git-branch
 compdef _git ga=git-add
 # }}}
 
